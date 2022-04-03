@@ -21,6 +21,10 @@ func (a *App) Run() error {
 	if err != nil {
 		return nil
 	}
+	err = database.MigrateDB(db)
+	if err != nil {
+		return err
+	}
 
 	CommentService := comment.NewService(db)
 
